@@ -11,11 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019175420) do
+ActiveRecord::Schema.define(version: 20151019190622) do
+
+  create_table "contacts", force: true do |t|
+    t.string   "name",       null: false
+    t.string   "email",      null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["name", "email"], name: "index_contacts_on_name_and_email", unique: true
+  add_index "contacts", ["user_id"], name: "index_contacts_on_user_id"
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "username",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
