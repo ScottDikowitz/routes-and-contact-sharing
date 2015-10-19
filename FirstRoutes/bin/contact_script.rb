@@ -5,23 +5,23 @@ def index
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/users.json'
+    path: '/contacts.json'
   ).to_s
 
   puts RestClient.get(url)
 end
 
-def create_user
+def create_contact
   url = Addressable::URI.new(
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/users.json'
+    path: '/contacts.json'
   ).to_s
   begin
     puts RestClient.post(
       url,
-      { user: { username: "Ryan"} }
+      { contact: { name: "Phil", email: "phil@email.com", user_id: 2 } }
     )
   rescue RestClient::Exception => e
     puts e.message
@@ -33,7 +33,7 @@ def show
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/users/1'
+    path: '/contacts/1'
   ).to_s
 
     puts RestClient.get(url)
@@ -44,10 +44,10 @@ def update
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/users/5'
+    path: '/contacts/5'
   ).to_s
 
-    args = {user: {username: 'Brian'}}
+    args = {contact: {name: "Tom", email: "tom@mail"}}
     puts RestClient.put(url, args)
 end
 
@@ -56,10 +56,8 @@ def delete
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/users/5'
+    path: '/contacts/5'
   ).to_s
 
     puts RestClient.delete(url)
 end
-
-index
