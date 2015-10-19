@@ -15,5 +15,6 @@ validates :name, :presence => true, :uniqueness => {:scope => :email}
     through: :contact_shares,
     source: :user
   )
+  has_many :comments, as: :commentable
 
 end
