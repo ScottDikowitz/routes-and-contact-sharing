@@ -5,7 +5,7 @@ def index
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/contacts.json'
+    path: 'users/1/contacts.json'
   ).to_s
 
   puts RestClient.get(url)
@@ -61,3 +61,5 @@ def delete
 
     puts RestClient.delete(url)
 end
+
+index
