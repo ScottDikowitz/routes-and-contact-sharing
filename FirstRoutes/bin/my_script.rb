@@ -51,4 +51,15 @@ def update
     puts RestClient.put(url, args)
 end
 
-update
+def delete
+  url = Addressable::URI.new(
+    scheme: 'http',
+    host: 'localhost',
+    port: 3000,
+    path: '/users/6'
+  ).to_s
+
+    puts RestClient.delete(url)
+end
+
+index
