@@ -27,18 +27,25 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
 
     user.update(user_params)
-    render json: user
+    if user.save
+      render json: user
+    else
+      render(
+        json: user.errors.full_messages, status: :unprocessable_entity
+      )
+    end
   end
 
   def destroy
-    User.find(params[:id]).delete
-    render text: "User deleted"
+    user = User.find(params[:id])
+    user.delete
+    render json: user
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :name)
+    params.require(:user).permit(:username)
   end
 
 end
